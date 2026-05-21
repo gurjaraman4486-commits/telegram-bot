@@ -44,7 +44,9 @@ def premium(update: Update, context: CallbackContext):
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    query.message.edit_caption(
+    context.bot.send_photo(
+        chat_id=update.effective_chat.id,
+        photo=PREMIUM_IMAGE,
         caption="💎 Select Your Plan:",
         reply_markup=reply_markup
     )
