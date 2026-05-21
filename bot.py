@@ -146,31 +146,43 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif data == "p1":
 
-    await query.message.reply_photo(
-        photo=QR_99,
-        caption="💸 Scan QR To Pay ₹99"
-    )
+        await query.message.reply_photo(
+            photo=QR_99,
+            caption="💸 Scan QR To Pay ₹99"
+        )
 
-elif data == "p2":
+    elif data == "p2":
 
-    await query.message.reply_photo(
-        photo=QR_149,
-        caption="💸 Scan QR To Pay ₹149"
-    )
+        await query.message.reply_photo(
+            photo=QR_149,
+            caption="💸 Scan QR To Pay ₹149"
+        )
 
-elif data == "p3":
+    elif data == "p3":
 
-    await query.message.reply_photo(
-        photo=QR_249,
-        caption="💸 Scan QR To Pay ₹249"
-    )
+        await query.message.reply_photo(
+            photo=QR_249,
+            caption="💸 Scan QR To Pay ₹249"
+        )
 
-elif data == "p4":
+    elif data == "p4":
 
-    await query.message.reply_photo(
-        photo=QR_499,
-        caption="💸 Scan QR To Pay ₹499"
-    )
+        await query.message.reply_photo(
+            photo=QR_499,
+            caption="💸 Scan QR To Pay ₹499"
+        )
+
+
+# ================= RUN =================
+app = ApplicationBuilder().token(TOKEN).build()
+
+app.add_handler(CommandHandler("start", start))
+
+app.add_handler(CallbackQueryHandler(button_handler))
+
+print("Bot is running...")
+
+app.run_polling()    )
 
 
 # ================= RUN =================
