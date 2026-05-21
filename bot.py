@@ -63,7 +63,9 @@ def back(update: Update, context: CallbackContext):
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    query.message.edit_caption(
+    context.bot.send_photo(
+        chat_id=update.effective_chat.id,
+        photo=START_IMAGE,
         caption="🎬 Available Collection",
         reply_markup=reply_markup
     )
