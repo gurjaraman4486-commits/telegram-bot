@@ -44,8 +44,9 @@ def premium(update: Update, context: CallbackContext):
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    query.message.edit_text(
-        "💎 Select Your Plan:",
+    context.bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="💎 Select Your Plan:",
         reply_markup=reply_markup
     )
 
