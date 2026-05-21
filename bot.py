@@ -1,19 +1,16 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 
-# 🔴 BOT TOKEN
-TOKEN = "8919459210:AAGWtjHwgUFETIABPIVTOrhB2dcgGFvMLBc"
+TOKEN = "YOUR_BOT_TOKEN"
 
-# Images
 START_IMAGE = "https://i.postimg.cc/MKWZn3Lv/IMG-20260521-163611-172.jpg"
 PREMIUM_IMAGE = "https://i.postimg.cc/x89kTfHG/IMG-20260521-164434-789.jpg"
 
-# Links
 DEMO_CHANNEL = "https://t.me/demochannlink"
 INFO_CHANNEL = "https://t.me/howtogetpre"
 
 
-# ================= START MENU =================
+# ================= START KEYBOARD =================
 def start_keyboard():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("💎 Get Premium", callback_data="premium")],
@@ -22,27 +19,33 @@ def start_keyboard():
     ])
 
 
+# ================= START =================
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    caption = """🎬 Available Collection
+
+🎬 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐕𝐢𝐝𝐞𝐨𝐬 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐨𝐧
+
+𝟏. 𝐌𝟎𝐌 𝐒𝐨𝐧 𝐯𝐢𝐝𝐞𝐨𝐬 - 𝟓𝟎𝟎𝟎+
+
+𝟐. 𝐒𝐢𝐬𝐭𝐞𝐫 𝐁𝐫𝐨𝐭𝐡𝐞𝐫 𝐯𝐢𝐝𝐞𝐨𝐬 - 𝟐𝟎𝟎𝟎+
+
+𝟑. 𝐏𝐫𝐞𝐦𝐢𝐮𝐦 𝐕𝐢𝐝𝐞𝐨𝐬 - 𝟏𝟓𝟎𝟎𝟎+
+
+𝟒. 𝟏𝟖+ 𝐓𝐞𝐞𝐧 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐨𝐧 - 𝟔𝟎𝟎𝟎+
+
+𝟓. 𝐈𝐧𝐝𝐢𝐚𝐧 𝐃𝐞𝐬𝐢 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐨𝐧 - 𝟏𝟎𝟎𝟎𝟎+
+
+𝟔. 𝐇𝐢𝐝𝐝𝐞𝐧 𝐂𝐚𝐦 𝐒𝐭𝐲𝐥𝐞 𝐕𝐢𝐝𝐞𝐨𝐬 - 𝟐𝟎𝟎𝟎+"""
+
     await update.message.reply_photo(
         photo=START_IMAGE,
-        caption="🎬 🎬 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐕𝐢𝐝𝐞𝐨𝐬 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐨𝐧
-
-𝟏. 𝐌𝟎𝐌 𝐒𝟎𝐍 𝐯𝐢𝐝𝐞𝐨𝐬 - 𝟓𝟎𝟎𝟎+
-
-𝟐. 𝐒!𝐬𝐭𝐞𝐫 𝐁𝐫𝟎𝐭𝐡𝐞𝐫 𝐯𝐢𝐝𝐞𝐨𝐬 -𝟐𝟎𝟎𝟎+
-
-𝟑. €𝐏 𝐯𝐢𝐝𝐞𝐨𝐬 - 𝟏𝟓𝟎𝟎𝟎+
-
-𝟒. 𝟏𝟖𝐓𝐞𝐞𝐧 𝐕𝐢𝐝𝐞𝐨𝐬 - 𝟔𝟎𝟎𝟎+
-
-𝟓. 𝐈𝐧𝐝𝐢𝐚𝐧 𝐝𝐞𝐬𝐢 𝐯𝐢𝐝𝐞𝐨𝐬 - 𝟏𝟎𝟎𝟎𝟎+
-
-𝟔. 𝐇𝐢𝐝𝐝𝐞𝐧 𝐜𝐚𝐦 𝐯𝐢𝐝𝐞𝐨𝐬 - 𝟐𝟎𝟎𝟎+ 👇",
+        caption=caption,
         reply_markup=start_keyboard()
     )
 
 
-# ================= PREMIUM MENU =================
+# ================= PREMIUM =================
 async def premium(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
@@ -50,11 +53,8 @@ async def premium(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = InlineKeyboardMarkup([
         [InlineKeyboardButton("👉 BASIC PLAN - ₹99", callback_data="p1")],
         [InlineKeyboardButton("👉 STANDARD PLAN - ₹149", callback_data="p2")],
-
-        # 🔥 VIP PLANS UPDATED
         [InlineKeyboardButton("👉 VIP PLAN 1 - ₹249", callback_data="p3")],
         [InlineKeyboardButton("👉 VIP PLAN 2 - ₹499", callback_data="p4")],
-
         [InlineKeyboardButton("⬅ Back", callback_data="back")]
     ])
 
@@ -75,43 +75,41 @@ async def back(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.message.edit_media(
         media=InputMediaPhoto(
             media=START_IMAGE,
-            caption="🎬 Available Collection\n\nChoose option below 👇"
+            caption="🎬 Available Collection"
         ),
         reply_markup=start_keyboard()
     )
 
 
-# ================= BUTTON HANDLER =================
+# ================= HANDLER =================
 async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
-    data = query.data
-
-    if data == "premium":
+    if query.data == "premium":
         await premium(update, context)
 
-    elif data == "back":
+    elif query.data == "back":
         await back(update, context)
 
-    elif data == "p1":
-        await query.message.reply_text("✅ BASIC PLAN selected (₹99)")
+    elif query.data == "p1":
+        await query.message.reply_text("✅ BASIC PLAN selected")
 
-    elif data == "p2":
-        await query.message.reply_text("✅ STANDARD PLAN selected (₹149)")
+    elif query.data == "p2":
+        await query.message.reply_text("✅ STANDARD PLAN selected")
 
-    elif data == "p3":
-        await query.message.reply_text("✅ VIP PLAN 1 selected (₹249)")
+    elif query.data == "p3":
+        await query.message.reply_text("✅ VIP PLAN 1 selected")
 
-    elif data == "p4":
+    elif query.data == "p4":
         await query.message.reply_text("💎 VIP PLAN 2 selected (₹499)")
 
 
-# ================= APP RUN =================
+# ================= RUN =================
 app = ApplicationBuilder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CallbackQueryHandler(button_handler))
 
-print("Bot is running...")
+print("Bot running...")
 app.run_polling()
