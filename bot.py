@@ -6,7 +6,7 @@ TOKEN = "8919459210:AAGWtjHwgUFETIABPIVTOrhB2dcgGFvMLBc"
 DEMO_CHANNEL = "https://t.me/demochannlink"
 PREMIUM_CHANNEL = "https://t.me/howtogetpre"
 
-START_IMAGE = "https://i.imgur.com/example.jpg"
+START_IMAGE = "https://i.postimg.cc/MKWZn3Lv/IMG-20260521-163611-172.jpg"
 
 
 def start(update: Update, context: CallbackContext):
