@@ -44,9 +44,10 @@ def premium(update: Update, context: CallbackContext):
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    context.bot.send_message(
+    context.bot.send_photo(
         chat_id=update.effective_chat.id,
-        text="💎 Select Your Plan:",
+        photo=PREMIUM_IMAGE,
+        caption="💎 Select Your Plan:",
         reply_markup=reply_markup
     )
 
