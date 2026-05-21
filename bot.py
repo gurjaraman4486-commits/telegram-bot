@@ -3,6 +3,8 @@ from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, Callback
 
 TOKEN = "8919459210:AAGWtjHwgUFETIABPIVTOrhB2dcgGFvMLBc"
 
+PREMIUM_IMAGE = "https://i.postimg.cc/x89kTfHG/IMG-20260521-164434-789.jpg"
+
 DEMO_CHANNEL = "https://t.me/demochannlink"
 PREMIUM_CHANNEL = "https://t.me/howtogetpre"
 
