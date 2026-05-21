@@ -81,6 +81,7 @@ def handler(update: Update, context: CallbackContext):
     query.answer()
 
     data = query.data
+    print("CLICK:", data)
 
     if data == 'premium':
         premium(update, context)
