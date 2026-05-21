@@ -1,10 +1,10 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, CallbackContext
 
-TOKEN = "YOUR_BOT_TOKEN"
+TOKEN = "8919459210:AAGWtjHwgUFETIABPIVTOrhB2dcgGFvMLBc"
 
-DEMO_CHANNEL = "https://t.me/your_demo"
-PREMIUM_CHANNEL = "https://t.me/your_premium"
+DEMO_CHANNEL = "https://t.me/demochannlink"
+PREMIUM_CHANNEL = "https://t.me/howtogetpre"
 
 START_IMAGE = "https://i.imgur.com/example.jpg"
 
