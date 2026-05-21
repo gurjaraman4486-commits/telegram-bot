@@ -55,10 +55,10 @@ async def premium(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.answer()
 
     keyboard = InlineKeyboardMarkup([
-        [InlineKeyboardButton("👉 BASIC PLAN - ₹99", callback_data="p1")],
-        [InlineKeyboardButton("👉 STANDARD PLAN - ₹149", callback_data="p2")],
-        [InlineKeyboardButton("👉 VIP PLAN 1 - ₹249", callback_data="p3")],
-        [InlineKeyboardButton("👉 VIP PLAN 2 - ₹499", callback_data="p4")],
+        [InlineKeyboardButton("👉 MS VID€OS - ₹99", callback_data="p1")],
+        [InlineKeyboardButton("👉 R€P VID€OS - ₹149", callback_data="p2")],
+        [InlineKeyboardButton("👉 ALL ¡N ONE ( 50 GROUP ) - ₹249", callback_data="p3")],
+        [InlineKeyboardButton("👉 VIP ALL ( 100K+ VID€OS ) - ₹499", callback_data="p4")],
         [InlineKeyboardButton("⬅ Back", callback_data="back")]
     ])
 
