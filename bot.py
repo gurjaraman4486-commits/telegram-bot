@@ -1,4 +1,4 @@
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, InputMediaPhoto
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, CallbackContext
 
 TOKEN = "8919459210:AAGWtjHwgUFETIABPIVTOrhB2dcgGFvMLBc"
@@ -55,18 +55,20 @@ def back(update: Update, context: CallbackContext):
 
     keyboard = [
         [InlineKeyboardButton("💎 Get Premium", callback_data='premium')],
-        [InlineKeyboardButton("📢 Demo", url=DEMO_CHANNEL)],
-        [InlineKeyboardButton("📖 Info", url=PREMIUM_CHANNEL)],
+        [InlineKeyboardButton("🎬 Demo Videos", url=DEMO_CHANNEL)],
+        [InlineKeyboardButton("📖 How To Get Premium", url=PREMIUM_CHANNEL)],
     ]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    query.message.edit_caption(
-        caption="🔥 *Available Collection*\nChoose an option below 👇",
-        reply_markup=reply_markup,
-        parse_mode='Markdown'
+    query.message.edit_media(
+        media=InputMediaPhoto(
+            media=START_IMAGE,
+            caption="🎬 Available Collection",
+            parse_mode="Markdown"
+        ),
+        reply_markup=reply_markup
     )
-
 
 def handler(update: Update, context: CallbackContext):
     query = update.callback_query
