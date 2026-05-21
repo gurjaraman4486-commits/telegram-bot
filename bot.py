@@ -1,19 +1,19 @@
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 
 TOKEN = "YOUR_BOT_TOKEN"
 
-PREMIUM_IMAGE = "https://i.postimg.cc/x89kTfHG/IMG-20260521-164434-789.jpg"
 START_IMAGE = "https://i.postimg.cc/MKWZn3Lv/IMG-20260521-163611-172.jpg"
+PREMIUM_IMAGE = "https://i.postimg.cc/x89kTfHG/IMG-20260521-164434-789.jpg"
 
 DEMO_CHANNEL = "https://t.me/demochannlink"
 PREMIUM_CHANNEL = "https://t.me/howtogetpre"
 
 
-# 🔹 START KEYBOARD
+# 🔹 KEYBOARD
 def start_keyboard():
     return InlineKeyboardMarkup([
-        [InlineKeyboardButton("💎 Get Premium", callback_data='premium')],
+        [InlineKeyboardButton("💎 Get Premium", callback_data="premium")],
         [InlineKeyboardButton("🎬 Demo Videos", url=DEMO_CHANNEL)],
         [InlineKeyboardButton("📖 Info", url=PREMIUM_CHANNEL)],
     ])
@@ -44,7 +44,7 @@ async def premium(update: Update, context: ContextTypes.DEFAULT_TYPE):
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     await query.message.edit_media(
-        media=telegram.InputMediaPhoto(
+        media=InputMediaPhoto(
             media=PREMIUM_IMAGE,
             caption="💎 Select Your Plan:"
         ),
@@ -58,7 +58,7 @@ async def back(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.answer()
 
     await query.message.edit_media(
-        media=telegram.InputMediaPhoto(
+        media=InputMediaPhoto(
             media=START_IMAGE,
             caption="🎬 Available Collection"
         ),
@@ -66,8 +66,8 @@ async def back(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-# 🔹 BUTTON HANDLER
-async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+# 🔹 HANDLER
+async def handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
@@ -80,11 +80,11 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await back(update, context)
 
 
-# 🔹 MAIN APP
+# 🔹 APP RUN
 app = ApplicationBuilder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CallbackQueryHandler(button_handler))
 
-print("Bot is running...")
+print("Bot running...")
 app.run_polling()
