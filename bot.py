@@ -146,50 +146,30 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif data == "p1":
 
-    await query.message.edit_media(
-        media=InputMediaPhoto(
-            media=QR_99,
-            caption="💸 Scan QR To Pay ₹99"
-        ),
-        reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("⬅ Back", callback_data="premium")]
-        ])
+    await query.message.reply_photo(
+        photo=QR_99,
+        caption="💸 Scan QR To Pay ₹99"
     )
 
 elif data == "p2":
 
-    await query.message.edit_media(
-        media=InputMediaPhoto(
-            media=QR_149,
-            caption="💸 Scan QR To Pay ₹149"
-        ),
-        reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("⬅ Back", callback_data="premium")]
-        ])
+    await query.message.reply_photo(
+        photo=QR_149,
+        caption="💸 Scan QR To Pay ₹149"
     )
 
 elif data == "p3":
 
-    await query.message.edit_media(
-        media=InputMediaPhoto(
-            media=QR_249,
-            caption="💸 Scan QR To Pay ₹249"
-        ),
-        reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("⬅ Back", callback_data="premium")]
-        ])
+    await query.message.reply_photo(
+        photo=QR_249,
+        caption="💸 Scan QR To Pay ₹249"
     )
 
 elif data == "p4":
 
-    await query.message.edit_media(
-        media=InputMediaPhoto(
-            media=QR_499,
-            caption="💸 Scan QR To Pay ₹499"
-        ),
-        reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("⬅ Back", callback_data="premium")]
-        ])
+    await query.message.reply_photo(
+        photo=QR_499,
+        caption="💸 Scan QR To Pay ₹499"
     )
 
 
