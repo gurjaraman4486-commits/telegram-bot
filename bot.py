@@ -56,15 +56,13 @@ def back(update: Update, context: CallbackContext):
     keyboard = [
         [InlineKeyboardButton("💎 Get Premium", callback_data='premium')],
         [InlineKeyboardButton("🎬 Demo Videos", url=DEMO_CHANNEL)],
-        [InlineKeyboardButton("📖 How To Get Premium", url=PREMIUM_CHANNEL)],
+        [InlineKeyboardButton("📖 Info", url=PREMIUM_CHANNEL)],
     ]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    context.bot.send_photo(
-        chat_id=update.effective_chat.id,
-        photo=START_IMAGE,
-        caption="🎬 Available Collection",
+    query.message.edit_text(
+        "🎬 Available Collection\n\nChoose an option below 👇",
         reply_markup=reply_markup
     )
 
