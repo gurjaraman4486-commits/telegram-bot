@@ -1,37 +1,36 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 
-# 🔴 अपना BOT TOKEN यहाँ डालो
+# 🔴 BOT TOKEN
 TOKEN = "8919459210:AAGWtjHwgUFETIABPIVTOrhB2dcgGFvMLBc"
 
 # Images
 START_IMAGE = "https://i.postimg.cc/MKWZn3Lv/IMG-20260521-163611-172.jpg"
-PREMIUM_IMAGE = "https://i.postimg.cc/xCNSXCWS/IMG-20260521-164434-789.jpg"
+PREMIUM_IMAGE = "https://i.postimg.cc/x89kTfHG/IMG-20260521-164434-789.jpg"
 
 # Links
 DEMO_CHANNEL = "https://t.me/demochannlink"
-PREMIUM_CHANNEL = "https://t.me/howtogetpre"
+INFO_CHANNEL = "https://t.me/howtogetpre"
 
 
-# 🔹 START MENU BUTTONS
+# ================= START MENU =================
 def start_keyboard():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("💎 Get Premium", callback_data="premium")],
         [InlineKeyboardButton("🎬 Demo Videos", url=DEMO_CHANNEL)],
-        [InlineKeyboardButton("📖 Info", url=PREMIUM_CHANNEL)],
+        [InlineKeyboardButton("📖 Info", url=INFO_CHANNEL)],
     ])
 
 
-# 🔹 START COMMAND
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_photo(
         photo=START_IMAGE,
-        caption="🎬 Available Collection",
+        caption="🎬 Available Collection\n\nChoose option below 👇",
         reply_markup=start_keyboard()
     )
 
 
-# 🔹 PREMIUM PAGE
+# ================= PREMIUM MENU =================
 async def premium(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
@@ -43,44 +42,53 @@ async def premium(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("⬅ Back", callback_data="back")]
     ])
 
-    await query.message.delete()
-
-    await context.bot.send_photo(
-        chat_id=update.effective_chat.id,
-        photo=PREMIUM_IMAGE,
-        caption="💎 Select Your Plan:",
+    await query.message.edit_media(
+        media=InputMediaPhoto(
+            media=PREMIUM_IMAGE,
+            caption="💎 Select Your Plan Below 👇"
+        ),
         reply_markup=keyboard
     )
 
 
-# 🔹 BACK TO START
+# ================= BACK =================
 async def back(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
-    await query.message.delete()
-
-    await context.bot.send_photo(
-        chat_id=update.effective_chat.id,
-        photo=START_IMAGE,
-        caption="🎬 Available Collection",
+    await query.message.edit_media(
+        media=InputMediaPhoto(
+            media=START_IMAGE,
+            caption="🎬 Available Collection\n\nChoose option below 👇"
+        ),
         reply_markup=start_keyboard()
     )
 
 
-# 🔹 BUTTON HANDLER
+# ================= BUTTON HANDLER =================
 async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
-    if query.data == "premium":
+    data = query.data
+
+    if data == "premium":
         await premium(update, context)
 
-    elif query.data == "back":
+    elif data == "back":
         await back(update, context)
 
+    elif data == "p1":
+        await query.message.reply_text("✅ BASIC PLAN selected")
 
-# 🔹 APP RUN
+    elif data == "p2":
+        await query.message.reply_text("✅ STANDARD PLAN selected")
+
+    elif data == "p3":
+        await query.message.reply_text("✅ VIP PLAN selected")
+
+
+# ================= APP =================
 app = ApplicationBuilder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
