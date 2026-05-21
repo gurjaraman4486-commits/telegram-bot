@@ -42,14 +42,10 @@ def premium(update: Update, context: CallbackContext):
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    query.message.delete()
-
-context.bot.send_photo(
-    chat_id=update.effective_chat.id,
-    photo=PREMIUM_IMAGE,
-    caption="💎 Select Your Plan:",
-    reply_markup=reply_markup
-)
+    query.message.edit_text(
+        text="💎 Select Your Plan:",
+        reply_markup=reply_markup
+    )
 
 
 def back(update: Update, context: CallbackContext):
