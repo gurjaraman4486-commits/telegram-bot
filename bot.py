@@ -67,7 +67,7 @@ def back(update: Update, context: CallbackContext):
     )
 
 
-def button_handler(update: Update, context: CallbackContext):
+def handler(update: Update, context: CallbackContext):
     query = update.callback_query
     query.answer()
 
