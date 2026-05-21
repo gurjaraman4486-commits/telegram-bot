@@ -26,19 +26,13 @@ def start_keyboard():
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     caption = (
-        "<b>🎬 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐕𝐢𝐝𝐞𝐨𝐬 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐨𝐧</b>\n\n"
-
-        "<b>➊ 𝐌𝐎𝐌 𝐒𝐨𝐧 𝐕𝐢𝐝𝐞𝐨𝐬 - 𝟓𝟎𝟎𝟎+</b>\n\n"
-
-        "<b>➋ 𝐒𝐢𝐬𝐭𝐞𝐫 𝐁𝐫𝐨𝐭𝐡𝐞𝐫 𝐕𝐢𝐝𝐞𝐨𝐬 - 𝟐𝟎𝟎𝟎+</b>\n\n"
-
-        "<b>➌ 𝐏𝐫𝐞𝐦𝐢𝐮𝐦 𝐕𝐢𝐝𝐞𝐨𝐬 - 𝟏𝟓𝟎𝟎𝟎+</b>\n\n"
-
-        "<b>➍ 𝐓𝐞𝐞𝐧 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐨𝐧 - 𝟔𝟎𝟎𝟎+</b>\n\n"
-
-        "<b>➎ 𝐈𝐧𝐝𝐢𝐚𝐧 𝐃𝐞𝐬𝐢 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐨𝐧 - 𝟏𝟎𝟎𝟎𝟎+</b>\n\n"
-
-        "<b>➏ 𝐇𝐢𝐝𝐝𝐞𝐧 𝐒𝐭𝐲𝐥𝐞 𝐕𝐢𝐝𝐞𝐨𝐬 - 𝟐𝟎𝟎𝟎+</b>"
+        "<b>🎬 Available Videos Collection</b>\n\n"
+        "<b>1. MOM Son Videos - 5000+</b>\n"
+        "<b>2. Sister Brother Videos - 2000+</b>\n"
+        "<b>3. Premium Videos - 15000+</b>\n"
+        "<b>4. Teen Collection - 6000+</b>\n"
+        "<b>5. Indian Desi Collection - 10000+</b>\n"
+        "<b>6. Hidden Style Videos - 2000+</b>"
     )
 
     await update.message.reply_photo(
@@ -65,7 +59,7 @@ async def premium(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.message.edit_media(
         media=InputMediaPhoto(
             media=PREMIUM_IMAGE,
-            caption="<b>💎 𝐒𝐞𝐥𝐞𝐜𝐭 𝐘𝐨𝐮𝐫 𝐏𝐥𝐚𝐧 𝐁𝐞𝐥𝐨𝐰 👇</b>",
+            caption="<b>💎 Select Your Plan Below 👇</b>",
             parse_mode="HTML"
         ),
         reply_markup=keyboard
@@ -77,21 +71,7 @@ async def back(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
-    caption = (
-        "<b>🎬 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐕𝐢𝐝𝐞𝐨𝐬 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐨𝐧</b>\n\n"
-
-        "<b>➊ 𝐌𝐎𝐌 𝐒𝐨𝐧 𝐕𝐢𝐝𝐞𝐨𝐬 - 𝟓𝟎𝟎𝟎+</b>\n\n"
-
-        "<b>➋ 𝐒𝐢𝐬𝐭𝐞𝐫 𝐁𝐫𝐨𝐭𝐡𝐞𝐫 𝐕𝐢𝐝𝐞𝐨𝐬 - 𝟐𝟎𝟎𝟎+</b>\n\n"
-
-        "<b>➌ 𝐏𝐫𝐞𝐦𝐢𝐮𝐦 𝐕𝐢𝐝𝐞𝐨𝐬 - 𝟏𝟓𝟎𝟎𝟎+</b>\n\n"
-
-        "<b>➍ 𝐓𝐞𝐞𝐧 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐨𝐧 - 𝟔𝟎𝟎𝟎+</b>\n\n"
-
-        "<b>➎ 𝐈𝐧𝐝𝐢𝐚𝐧 𝐃𝐞𝐬𝐢 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐨𝐧 - 𝟏𝟎𝟎𝟎𝟎+</b>\n\n"
-
-        "<b>➏ 𝐇𝐢𝐝𝐝𝐞𝐧 𝐒𝐭𝐲𝐥𝐞 𝐕𝐢𝐝𝐞𝐨𝐬 - 𝟐𝟎𝟎𝟎+</b>"
-    )
+    caption = "<b>🎬 Available Videos Collection</b>"
 
     await query.message.edit_media(
         media=InputMediaPhoto(
@@ -103,7 +83,7 @@ async def back(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-# ================= BUTTON HANDLER =================
+# ================= HANDLER =================
 async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
