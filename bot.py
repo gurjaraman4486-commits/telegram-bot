@@ -1,7 +1,7 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 
-TOKEN = "8919459210:AAGWtjHwgUFETIABPIVTOrhB2dcgGFvMLBc"
+TOKEN = "YOUR_BOT_TOKEN"
 
 START_IMAGE = "https://i.postimg.cc/MKWZn3Lv/IMG-20260521-163611-172.jpg"
 PREMIUM_IMAGE = "https://i.postimg.cc/x89kTfHG/IMG-20260521-164434-789.jpg"
@@ -22,24 +22,19 @@ def start_keyboard():
 # ================= START =================
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
-    caption = """*🎬 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐕𝐢𝐝𝐞𝐨𝐬 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐨𝐧*
-
-𝟏. 𝐌𝟎𝐌 𝐒𝐨𝐧 𝐯𝐢𝐝𝐞𝐨𝐬 - 𝟓𝟎𝟎𝟎+
-
-𝟐. 𝐒𝐢𝐬𝐭𝐞𝐫 𝐁𝐫𝐨𝐭𝐡𝐞𝐫 𝐯𝐢𝐝𝐞𝐨𝐬 - 𝟐𝟎𝟎𝟎+
-
-𝟑. 𝐏𝐫𝐞𝐦𝐢𝐮𝐦 𝐕𝐢𝐝𝐞𝐨𝐬 - 𝟏𝟓𝟎𝟎𝟎+
-
-𝟒. 𝟏𝟖+ 𝐓𝐞𝐞𝐧 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐨𝐧 - 𝟔𝟎𝟎𝟎+
-
-𝟓. 𝐈𝐧𝐝𝐢𝐚𝐧 𝐃𝐞𝐬𝐢 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐨𝐧 - 𝟏𝟎𝟎𝟎𝟎+
-
-𝟔. 𝐇𝐢𝐝𝐝𝐞𝐧 𝐂𝐚𝐦 𝐒𝐭𝐲𝐥𝐞 𝐕𝐢𝐝𝐞𝐨𝐬 - 𝟐𝟎𝟎𝟎+*"""
+    caption = (
+        "🎬 Available Videos Collection\n\n"
+        "1. MOM Son videos - 5000+\n"
+        "2. Sister Brother videos - 2000+\n"
+        "3. Premium videos - 15000+\n"
+        "4. 18+ Teen Collection - 6000+\n"
+        "5. Indian Desi Collection - 10000+\n"
+        "6. Hidden Cam Style Videos - 2000+"
+    )
 
     await update.message.reply_photo(
         photo=START_IMAGE,
         caption=caption,
-        parse_mode="Markdown",
         reply_markup=start_keyboard()
     )
 
@@ -85,22 +80,24 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
-    if query.data == "premium":
+    data = query.data
+
+    if data == "premium":
         await premium(update, context)
 
-    elif query.data == "back":
+    elif data == "back":
         await back(update, context)
 
-    elif query.data == "p1":
+    elif data == "p1":
         await query.message.reply_text("✅ BASIC PLAN selected")
 
-    elif query.data == "p2":
+    elif data == "p2":
         await query.message.reply_text("✅ STANDARD PLAN selected")
 
-    elif query.data == "p3":
+    elif data == "p3":
         await query.message.reply_text("✅ VIP PLAN 1 selected")
 
-    elif query.data == "p4":
+    elif data == "p4":
         await query.message.reply_text("💎 VIP PLAN 2 selected (₹499)")
 
 
