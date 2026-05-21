@@ -76,25 +76,26 @@ def back(update: Update, context: CallbackContext):
         reply_markup=reply_markup
     )
 
-def handler(update: Update, context: CallbackContext):
+def button_handler(update: Update, context: CallbackContext):
     query = update.callback_query
     query.answer()
 
     data = query.data
 
-    print("CLICKED:", data)
+    print("CLICK:", data)
 
     if data == "premium":
-        return premium(update, context)
+        premium(update, context)
 
-    if data == "back":
-        return back(update, context)
+    elif data == "back":
+        back(update, context)
+        
 updater = Updater(TOKEN, use_context=True)
 
 dp = updater.dispatcher
 
 dp.add_handler(CommandHandler("start", start))
-dp.add_handler(CallbackQueryHandler(handler))
+dp.add_handler(CallbackQueryHandler(button_handler))
 
 updater.start_polling()
 updater.idle()
