@@ -10,6 +10,12 @@ PREMIUM_CHANNEL = "https://t.me/howtogetpre"
 
 START_IMAGE = "https://i.postimg.cc/MKWZn3Lv/IMG-20260521-163611-172.jpg"
 
+def start_keyboard():
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton("💎 Get Premium", callback_data='premium')],
+        [InlineKeyboardButton("🎬 Demo Videos", url=DEMO_CHANNEL)],
+        [InlineKeyboardButton("📖 Info", url=PREMIUM_CHANNEL)],
+    ])
 
 def start(update: Update, context: CallbackContext):
     keyboard = [
