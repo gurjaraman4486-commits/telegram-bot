@@ -1,4 +1,4 @@
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 
 TOKEN = "YOUR_BOT_TOKEN"
@@ -10,7 +10,7 @@ DEMO_CHANNEL = "https://t.me/demochannlink"
 PREMIUM_CHANNEL = "https://t.me/howtogetpre"
 
 
-# 🔹 KEYBOARD
+# MENU
 def start_keyboard():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("💎 Get Premium", callback_data="premium")],
@@ -19,7 +19,7 @@ def start_keyboard():
     ])
 
 
-# 🔹 START
+# START
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_photo(
         photo=START_IMAGE,
@@ -28,59 +28,54 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-# 🔹 PREMIUM
+# PREMIUM
 async def premium(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
     keyboard = [
-        [InlineKeyboardButton("👉 BASIC PLAN - ₹99", callback_data='plan1')],
-        [InlineKeyboardButton("👉 STANDARD PLAN - ₹149", callback_data='plan2')],
-        [InlineKeyboardButton("👉 ALL IN ONE - ₹249", callback_data='plan3')],
-        [InlineKeyboardButton("👉 VIP ACCESS - ₹499", callback_data='plan4')],
-        [InlineKeyboardButton("⬅ Back", callback_data='back')]
+        [InlineKeyboardButton("👉 BASIC PLAN - ₹99", callback_data="p1")],
+        [InlineKeyboardButton("⬅ Back", callback_data="back")]
     ]
 
-    reply_markup = InlineKeyboardMarkup(keyboard)
+    await query.message.delete()
 
-    await query.message.edit_media(
-        media=InputMediaPhoto(
-            media=PREMIUM_IMAGE,
-            caption="💎 Select Your Plan:"
-        ),
-        reply_markup=reply_markup
+    await context.bot.send_photo(
+        chat_id=update.effective_chat.id,
+        photo=PREMIUM_IMAGE,
+        caption="💎 Select Your Plan:",
+        reply_markup=InlineKeyboardMarkup(keyboard)
     )
 
 
-# 🔹 BACK
+# BACK
 async def back(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
-    await query.message.edit_media(
-        media=InputMediaPhoto(
-            media=START_IMAGE,
-            caption="🎬 Available Collection"
-        ),
+    await query.message.delete()
+
+    await context.bot.send_photo(
+        chat_id=update.effective_chat.id,
+        photo=START_IMAGE,
+        caption="🎬 Available Collection",
         reply_markup=start_keyboard()
     )
 
 
-# 🔹 HANDLER
-async def handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+# HANDLER
+async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
-    data = query.data
-
-    if data == "premium":
+    if query.data == "premium":
         await premium(update, context)
 
-    elif data == "back":
+    elif query.data == "back":
         await back(update, context)
 
 
-# 🔹 APP RUN
+# APP
 app = ApplicationBuilder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
