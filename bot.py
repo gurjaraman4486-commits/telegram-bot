@@ -76,6 +76,9 @@ def handler(update: Update, context: CallbackContext):
 
     if query.data == 'premium':
         premium(update, context)
+      
+    if query.data == 'back':
+        back(update, context)
 
 
 updater = Updater(TOKEN, use_context=True)
