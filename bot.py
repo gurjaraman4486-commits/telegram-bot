@@ -9,19 +9,12 @@ PREMIUM_CHANNEL = "https://t.me/howtogetpre"
 
 START_IMAGE = "https://i.postimg.cc/MKWZn3Lv/IMG-20260521-163611-172.jpg"
 
-def start_keyboard():
-    return InlineKeyboardMarkup([
-        [InlineKeyboardButton("💎 Get Premium", callback_data='premium')],
-        [InlineKeyboardButton("🎬 Demo Videos", url=DEMO_CHANNEL)],
-        [InlineKeyboardButton("📖 Info", url=PREMIUM_CHANNEL)],
-    ])
-
-def start(update: Update, context: CallbackContext):
-    keyboard = [
-        [InlineKeyboardButton("💎 Get Premium", callback_data='premium')],
-        [InlineKeyboardButton("📢 Demo", url=DEMO_CHANNEL)],
-        [InlineKeyboardButton("📖 Info", url=PREMIUM_CHANNEL)],
-    ]
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_photo(
+        photo=START_IMAGE,
+        caption="🎬 Available Collection",
+        reply_markup=start_keyboard()
+    )
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
@@ -75,19 +68,17 @@ def back(update: Update, context: CallbackContext):
         reply_markup=reply_markup
     )
 
-def handler(update: Update, context: CallbackContext):
+async def handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
-    query.answer()
+    await query.answer()
 
     data = query.data
 
-    print("CLICK:", data)
-
     if data == "premium":
-        premium(update, context)
+        await premium(update, context)
 
     elif data == "back":
-        back(update, context)
+        await back(update, context)
         
 updater = Updater(TOKEN, use_context=True)
 
