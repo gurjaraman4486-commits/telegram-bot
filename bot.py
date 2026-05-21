@@ -1,13 +1,16 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 
+# ================= TOKEN =================
 TOKEN = "YOUR_BOT_TOKEN"
 
+# ================= IMAGES =================
 START_IMAGE = "https://i.postimg.cc/MKWZn3Lv/IMG-20260521-163611-172.jpg"
 PREMIUM_IMAGE = "https://i.postimg.cc/x89kTfHG/IMG-20260521-164434-789.jpg"
 
+# ================= LINKS =================
 DEMO_CHANNEL = "https://t.me/demochannlink"
-INFO_CHANNEL = "https://t.me/howtogetpre"
+HOW_TO_CHANNEL = "https://t.me/howtogetpre"
 
 
 # ================= START KEYBOARD =================
@@ -15,7 +18,7 @@ def start_keyboard():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("💎 Get Premium", callback_data="premium")],
         [InlineKeyboardButton("🎬 Demo Videos", url=DEMO_CHANNEL)],
-        [InlineKeyboardButton("📖 How To Get Premium", url=INFO_CHANNEL)],
+        [InlineKeyboardButton("📖 How To Get Premium", url=HOW_TO_CHANNEL)],
     ])
 
 
@@ -24,12 +27,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     caption = (
         "🎬 Available Videos Collection\n\n"
-        "1. MOM Son videos - 5000+\n"
-        "2. Sister Brother videos - 2000+\n"
-        "3. Premium videos - 15000+\n"
-        "4. 18+ Teen Collection - 6000+\n"
+        "1. MOM Son Videos - 5000+\n"
+        "2. Sister Brother Videos - 2000+\n"
+        "3. Premium Videos - 15000+\n"
+        "4. Teen Collection - 6000+\n"
         "5. Indian Desi Collection - 10000+\n"
-        "6. Hidden Cam Style Videos - 2000+"
+        "6. Hidden Style Videos - 2000+"
     )
 
     await update.message.reply_photo(
@@ -39,7 +42,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-# ================= PREMIUM =================
+# ================= PREMIUM MENU =================
 async def premium(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
@@ -61,7 +64,7 @@ async def premium(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-# ================= BACK =================
+# ================= BACK TO START =================
 async def back(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
@@ -75,7 +78,7 @@ async def back(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-# ================= HANDLER =================
+# ================= CALLBACK HANDLER =================
 async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
@@ -89,23 +92,23 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await back(update, context)
 
     elif data == "p1":
-        await query.message.reply_text("✅ BASIC PLAN selected")
+        await query.message.reply_text("✅ BASIC PLAN selected (₹99)")
 
     elif data == "p2":
-        await query.message.reply_text("✅ STANDARD PLAN selected")
+        await query.message.reply_text("✅ STANDARD PLAN selected (₹149)")
 
     elif data == "p3":
-        await query.message.reply_text("✅ VIP PLAN 1 selected")
+        await query.message.reply_text("💎 VIP PLAN 1 selected (₹249)")
 
     elif data == "p4":
-        await query.message.reply_text("💎 VIP PLAN 2 selected (₹499)")
+        await query.message.reply_text("🔥 VIP PLAN 2 selected (₹499)")
 
 
-# ================= RUN =================
+# ================= APP =================
 app = ApplicationBuilder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CallbackQueryHandler(button_handler))
 
-print("Bot running...")
+print("Bot is running...")
 app.run_polling()
