@@ -2,7 +2,7 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputMe
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 
 # 🔴 BOT TOKEN
-TOKEN = "8919459210:AAGWtjHwgUFETIABPIVTOrhB2dcgGFvMLBc"
+TOKEN = "YOUR_BOT_TOKEN"
 
 # Images
 START_IMAGE = "https://i.postimg.cc/MKWZn3Lv/IMG-20260521-163611-172.jpg"
@@ -38,7 +38,11 @@ async def premium(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = InlineKeyboardMarkup([
         [InlineKeyboardButton("👉 BASIC PLAN - ₹99", callback_data="p1")],
         [InlineKeyboardButton("👉 STANDARD PLAN - ₹149", callback_data="p2")],
-        [InlineKeyboardButton("👉 VIP PLAN - ₹249", callback_data="p3")],
+
+        # 🔥 VIP PLANS UPDATED
+        [InlineKeyboardButton("👉 VIP PLAN 1 - ₹249", callback_data="p3")],
+        [InlineKeyboardButton("👉 VIP PLAN 2 - ₹499", callback_data="p4")],
+
         [InlineKeyboardButton("⬅ Back", callback_data="back")]
     ])
 
@@ -79,16 +83,19 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await back(update, context)
 
     elif data == "p1":
-        await query.message.reply_text("✅ BASIC PLAN selected")
+        await query.message.reply_text("✅ BASIC PLAN selected (₹99)")
 
     elif data == "p2":
-        await query.message.reply_text("✅ STANDARD PLAN selected")
+        await query.message.reply_text("✅ STANDARD PLAN selected (₹149)")
 
     elif data == "p3":
-        await query.message.reply_text("✅ VIP PLAN selected")
+        await query.message.reply_text("✅ VIP PLAN 1 selected (₹249)")
+
+    elif data == "p4":
+        await query.message.reply_text("💎 VIP PLAN 2 selected (₹499)")
 
 
-# ================= APP =================
+# ================= APP RUN =================
 app = ApplicationBuilder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
