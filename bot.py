@@ -59,7 +59,7 @@ async def premium(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.message.edit_media(
         media=InputMediaPhoto(
             media=PREMIUM_IMAGE,
-            caption="💎 <b>Select Your Plan Below 👇</b>",
+            caption="<b>💎 Select Your Plan Below 👇</b>",
             parse_mode="HTML"
         ),
         reply_markup=keyboard
@@ -71,9 +71,7 @@ async def back(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
-    caption = (
-        "<b>🎬 Available Videos Collection</b>"
-    )
+    caption = "<b>🎬 Available Videos Collection</b>"
 
     await query.message.edit_media(
         media=InputMediaPhoto(
