@@ -35,18 +35,19 @@ def premium(update: Update, context: CallbackContext):
     query.answer()
 
     keyboard = [
-        [InlineKeyboardButton("Plan 1 - ₹99", callback_data='p1')],
-        [InlineKeyboardButton("Plan 2 - ₹199", callback_data='p2')],
-        [InlineKeyboardButton("⬅ Back", callback_data='back')],
+        [InlineKeyboardButton("👉 BASIC PLAN - ₹99", callback_data='plan1')],
+        [InlineKeyboardButton("👉 STANDARD PLAN - ₹149", callback_data='plan2')],
+        [InlineKeyboardButton("👉 ALL IN ONE - ₹249", callback_data='plan3')],
+        [InlineKeyboardButton("👉 VIP ACCESS - ₹499", callback_data='plan4')],
+        [InlineKeyboardButton("⬅ Back", callback_data='back')]
     ]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     query.message.edit_text(
-        text="💎 Select Your Plan:",
+        "💎 Select Your Plan:",
         reply_markup=reply_markup
     )
-
 
 def back(update: Update, context: CallbackContext):
     query = update.callback_query
