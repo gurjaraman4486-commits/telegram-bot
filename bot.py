@@ -63,8 +63,8 @@ def back(update: Update, context: CallbackContext):
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    query.message.edit_text(
-        "🎬 Available Collection\n\nChoose an option below 👇",
+    query.message.edit_caption(
+        caption="🎬 Available Collection",
         reply_markup=reply_markup
     )
 
