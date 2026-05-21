@@ -13,7 +13,7 @@ DEMO_CHANNEL = "https://t.me/demochannlink"
 INFO_CHANNEL = "https://t.me/howtogetpre"
 
 
-# ================= START MENU =================
+# ================= START KEYBOARD =================
 def start_keyboard():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("💎 Get Premium", callback_data="premium")],
@@ -22,22 +22,23 @@ def start_keyboard():
     ])
 
 
-# ================= START COMMAND =================
+# ================= START =================
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     caption = (
-        "🎬 Available Videos Collection\n\n"
-        "1. MOM Son Videos - 5000+\n"
-        "2. Sister Brother Videos - 2000+\n"
-        "3. Premium Videos - 15000+\n"
-        "4. Teen Collection - 6000+\n"
-        "5. Indian Desi Collection - 10000+\n"
-        "6. Hidden Style Videos - 2000+"
+        "<b>🎬 Available Videos Collection</b>\n\n"
+        "<b>1. MOM Son Videos - 5000+</b>\n"
+        "<b>2. Sister Brother Videos - 2000+</b>\n"
+        "<b>3. Premium Videos - 15000+</b>\n"
+        "<b>4. Teen Collection - 6000+</b>\n"
+        "<b>5. Indian Desi Collection - 10000+</b>\n"
+        "<b>6. Hidden Style Videos - 2000+</b>"
     )
 
     await update.message.reply_photo(
         photo=START_IMAGE,
         caption=caption,
+        parse_mode="HTML",
         reply_markup=start_keyboard()
     )
 
@@ -58,7 +59,8 @@ async def premium(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.message.edit_media(
         media=InputMediaPhoto(
             media=PREMIUM_IMAGE,
-            caption="💎 Select Your Plan Below 👇"
+            caption="💎 <b>Select Your Plan Below 👇</b>",
+            parse_mode="HTML"
         ),
         reply_markup=keyboard
     )
@@ -69,16 +71,21 @@ async def back(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
+    caption = (
+        "<b>🎬 Available Videos Collection</b>"
+    )
+
     await query.message.edit_media(
         media=InputMediaPhoto(
             media=START_IMAGE,
-            caption="🎬 Available Videos Collection"
+            caption=caption,
+            parse_mode="HTML"
         ),
         reply_markup=start_keyboard()
     )
 
 
-# ================= BUTTON HANDLER =================
+# ================= HANDLER =================
 async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
@@ -104,7 +111,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.message.reply_text("🔥 VIP PLAN 2 selected (₹499)")
 
 
-# ================= APP =================
+# ================= RUN =================
 app = ApplicationBuilder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
