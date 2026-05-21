@@ -15,16 +15,14 @@ def start_keyboard():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("💎 Get Premium", callback_data="premium")],
         [InlineKeyboardButton("🎬 Demo Videos", url=DEMO_CHANNEL)],
-        [InlineKeyboardButton("📖 Info", url=INFO_CHANNEL)],
+        [InlineKeyboardButton("📖 How To Get Premium", url=INFO_CHANNEL)],
     ])
 
 
 # ================= START =================
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
-    caption = """🎬 Available Collection
-
-🎬 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐕𝐢𝐝𝐞𝐨𝐬 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐨𝐧
+    caption = """*🎬 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐕𝐢𝐝𝐞𝐨𝐬 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐨𝐧*
 
 𝟏. 𝐌𝟎𝐌 𝐒𝐨𝐧 𝐯𝐢𝐝𝐞𝐨𝐬 - 𝟓𝟎𝟎𝟎+
 
@@ -36,11 +34,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 𝟓. 𝐈𝐧𝐝𝐢𝐚𝐧 𝐃𝐞𝐬𝐢 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐨𝐧 - 𝟏𝟎𝟎𝟎𝟎+
 
-𝟔. 𝐇𝐢𝐝𝐝𝐞𝐧 𝐂𝐚𝐦 𝐒𝐭𝐲𝐥𝐞 𝐕𝐢𝐝𝐞𝐨𝐬 - 𝟐𝟎𝟎𝟎+"""
+𝟔. 𝐇𝐢𝐝𝐝𝐞𝐧 𝐂𝐚𝐦 𝐒𝐭𝐲𝐥𝐞 𝐕𝐢𝐝𝐞𝐨𝐬 - 𝟐𝟎𝟎𝟎+*"""
 
     await update.message.reply_photo(
         photo=START_IMAGE,
         caption=caption,
+        parse_mode="Markdown",
         reply_markup=start_keyboard()
     )
 
@@ -75,7 +74,7 @@ async def back(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.message.edit_media(
         media=InputMediaPhoto(
             media=START_IMAGE,
-            caption="🎬 Available Collection"
+            caption="🎬 Available Videos Collection"
         ),
         reply_markup=start_keyboard()
     )
