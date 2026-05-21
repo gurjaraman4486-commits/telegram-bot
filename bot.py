@@ -2,7 +2,7 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputMe
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 
 # ================= TOKEN =================
-TOKEN = "YOUR_BOT_TOKEN"
+TOKEN = "8916244110:AAG4k2sDIZv3D_FFjZtY9dxIN1MHwu8ns4k"
 
 # ================= IMAGES =================
 START_IMAGE = "https://i.postimg.cc/MKWZn3Lv/IMG-20260521-163611-172.jpg"
