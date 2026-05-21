@@ -67,13 +67,14 @@ def back(update: Update, context: CallbackContext):
     )
 
 
-def handler(update: Update, context: CallbackContext):
+def button_handler(update: Update, context: CallbackContext):
     query = update.callback_query
+    query.answer()
+
+    print("BUTTON CLICKED:", query.data)
 
     if query.data == 'premium':
         premium(update, context)
-    elif query.data == 'back':
-        back(update, context)
 
 
 updater = Updater(TOKEN, use_context=True)
