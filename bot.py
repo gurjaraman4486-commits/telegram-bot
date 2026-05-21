@@ -76,20 +76,19 @@ def back(update: Update, context: CallbackContext):
         reply_markup=reply_markup
     )
 
-def handler(update: Update, context: CallbackContext):
+def button_handler(update: Update, context: CallbackContext):
     query = update.callback_query
     query.answer()
 
     data = query.data
 
-    print("BUTTON CLICKED:", data)
+    print("CLICKED:", data)
 
     if data == "premium":
-        premium(update, context)
+        return premium(update, context)
 
-    elif data == "back":
-        back(update, context)
-
+    if data == "back":
+        return back(update, context)
 updater = Updater(TOKEN, use_context=True)
 
 dp = updater.dispatcher
